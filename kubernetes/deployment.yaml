@@ -20,3 +20,9 @@ spec:
       containers:
       - name: nick-portfolio
         image: nick-vs-docker-app:v3
+        ports:
+        - containerPort: 5000
+
+
+
+        
