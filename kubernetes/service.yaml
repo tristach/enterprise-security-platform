@@ -5,7 +5,7 @@ metadata:
   name: nick-portfolio-service
 
 spec:
-  type: NodePort
+  type: ClusterIP
 
   selector:
     app: nick-portfolio
