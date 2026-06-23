@@ -34,3 +34,23 @@ kubectl describe service nick-portfolio-service
 kubectl rollout history deployment nick-portfolio
 kubectl rollout status deployment nick-portfolio
 kubectl rollout undo deployment nick-portfolio
+
+## Current Kubernetes Architecture
+
+This project currently runs a Dockerized Flask portfolio application on Kubernetes.
+
+Traffic flow:
+
+Browser
+↓
+NGINX Ingress Controller
+↓
+Ingress Resource
+↓
+ClusterIP Service
+↓
+Pods
+↓
+Flask Container
+
+The application originally used a NodePort Service for browser access. After adding an NGINX Ingress Controller, the Service was converted to ClusterIP so that the application is only exposed internally inside the cluster. External traffic now enters through the Ingress Controller.
