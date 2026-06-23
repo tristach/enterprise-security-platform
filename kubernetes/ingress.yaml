@@ -5,7 +5,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: portfolio.nick.local
+    http:
       paths:
       - path: /
         pathType: Prefix
