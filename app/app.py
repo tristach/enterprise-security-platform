@@ -1,3 +1,4 @@
+import json
 from flask import Flask
 
 app = Flask(__name__)
@@ -24,12 +25,8 @@ def version():
 
 @app.route("/alerts")
 def alerts():
-    return {
-        "alerts": [
-            {"type": "brute_force_attempt", "severity": "medium"},
-            {"type": "firewall_tampering", "severity": "high"},
-            {"type": "key_vault_activity", "severity": "high"}
-        ]
-    }
+    with open("alerts.json", "r") as file:
+        data = json.load(file)
+    return data
 
 app.run(host="0.0.0.0", port=5000)
