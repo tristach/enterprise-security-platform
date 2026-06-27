@@ -5,9 +5,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return """
+    with open("alerts.json", "r") as file:
+        data = json.load(file)
+
+    alert_count = len(data["alerts"])
+
+    return f"""
     <h1>Nick's Cloud SOC Dashboard</h1>
     <p>Containerized Flask app running on Kubernetes.</p>
+    <p>Current Open Alerts: {alert_count}</p>
+
     <ul>
         <li><a href="/health">Health Check</a></li>
         <li><a href="/version">Version</a></li>
