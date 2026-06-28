@@ -1,3 +1,94 @@
+# Enterprise Security Platform
+
+## Overview
+
+The Enterprise Security Platform is a cloud-native security application designed to demonstrate modern cloud security engineering, container orchestration, and security monitoring practices.
+
+The platform is built around Microsoft Azure and is intended to aggregate, process, and present security information through a centralized web-based dashboard.
+
+---
+
+## Objectives
+
+* Build a production-style cloud security platform
+* Demonstrate secure application architecture
+* Consume and present Azure security telemetry
+* Deploy containerized services using Kubernetes
+* Implement Infrastructure as Code with Terraform
+* Showcase cloud security engineering workflows
+
+---
+
+## Planned Architecture
+
+```text
+Microsoft Azure
+        │
+        ▼
+Microsoft Sentinel / Log Analytics
+        │
+        ▼
+Security Data API
+        │
+        ▼
+Flask Dashboard & REST API
+        │
+        ▼
+Docker
+        │
+        ▼
+Kubernetes
+        │
+        ▼
+Web Dashboard
+```
+
+---
+
+## Current Capabilities
+
+* Dockerized Python application
+* Kubernetes Deployment, Service, and Ingress
+* JSON-based security data model
+* REST API endpoints
+* Rolling deployments
+* Self-healing Kubernetes workloads
+* Git-based development workflow
+
+---
+
+## Planned Enhancements
+
+* Live Azure security telemetry
+* Microsoft Sentinel integration
+* KQL-powered data retrieval
+* Authentication and authorization
+* Infrastructure as Code using Terraform
+* CI/CD pipeline
+* Security reporting and analytics
+
+---
+
+## Technologies
+
+* Python
+* Flask
+* Docker
+* Kubernetes
+* Microsoft Azure
+* Microsoft Sentinel
+* Log Analytics
+* KQL
+* Terraform
+* Git & GitHub
+
+---
+
+## Purpose
+
+This repository demonstrates the design and implementation of a cloud-native security platform using modern infrastructure, containerization, and cloud security technologies.
+
+
 # enterprise-security-platform
 
 #In layman's terms:
