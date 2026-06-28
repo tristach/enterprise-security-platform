@@ -8,12 +8,30 @@ def home():
     with open("alerts.json", "r") as file:
         data = json.load(file)
 
-    alert_count = len(data["alerts"])
+    alerts = data["alerts"]
+    alert_count = len(alerts)
+
+    alert_list = ""
+
+    for alert in alerts:
+        alert_list += f"""
+        <li>
+            <strong>{alert["type"]}</strong><br>
+            Severity: {alert["severity"]}<br>
+            Source: {alert["source"]}<br>
+            Status: {alert["status"]}
+        </li>
+        """
 
     return f"""
     <h1>Nick's Cloud SOC Dashboard</h1>
     <p>Containerized Flask app running on Kubernetes.</p>
     <p>Current Open Alerts: {alert_count}</p>
+
+    <h2>Current Alerts</h2>
+    <ul>
+        {alert_list}
+    </ul>
 
     <ul>
         <li><a href="/health">Health Check</a></li>
