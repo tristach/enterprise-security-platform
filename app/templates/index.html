@@ -9,18 +9,30 @@
 <body>
 
     <h1>Enterprise Security Platform</h1>
-        <p>Microsoft Sentinel Dashboard</p>
+
+    <p>Microsoft Sentinel Dashboard</p>
 
     <h2>Microsoft Sentinel Alerts</h2>
 
-    <table border="1">
+    <table border="1" cellpadding="6" cellspacing="0">
         <tr>
-            <th>Alert</th>
+            <th>Alert Name</th>
             <th>Severity</th>
             <th>Status</th>
             <th>Provider</th>
             <th>Time</th>
         </tr>
+
+        {% for alert in alerts %}
+        <tr>
+            <td>{{ alert.alert_name }}</td>
+            <td>{{ alert.severity }}</td>
+            <td>{{ alert.status }}</td>
+            <td>{{ alert.provider }}</td>
+            <td>{{ alert.time }}</td>
+        </tr>
+        {% endfor %}
+
     </table>
 
 </body>
