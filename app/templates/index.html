@@ -4,36 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise Security Platform</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            background-color: #f5f7fa;
+            color: #1f2937;
+        }
+
+        header {
+            background-color: #0f172a;
+            color: white;
+            padding: 24px 40px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 6px 0 0;
+            color: #cbd5e1;
+        }
+
+        main {
+            padding: 30px 40px;
+        }
+
+        .summary {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 16px 20px;
+            min-width: 140px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .card p {
+            margin: 8px 0 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid #d1d5db;
+        }
+
+        th {
+            background-color: #e5e7eb;
+            text-align: left;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        .severity {
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .high {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .medium {
+            background-color: #ffedd5;
+            color: #9a3412;
+        }
+
+        .low {
+            background-color: #fef9c3;
+            color: #854d0e;
+        }
+
+        .unknown {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+    </style>
 </head>
 
 <body>
+    <header>
+        <h1>Enterprise Security Platform</h1>
+        <p>Cloud Security Dashboard</p>
+    </header>
 
-    <h1>Enterprise Security Platform</h1>
+    <main>
+        <section class="summary">
+            <div class="card">
+                <h3>Total Alerts</h3>
+                <p>{{ alerts|length }}</p>
+            </div>
 
-    <p>Microsoft Sentinel Dashboard</p>
+            <div class="card">
+                <h3>High</h3>
+                <p>{{ alerts|selectattr("severity", "equalto", "High")|list|length }}</p>
+            </div>
 
-    <h2>Microsoft Sentinel Alerts</h2>
+            <div class="card">
+                <h3>Medium</h3>
+                <p>{{ alerts|selectattr("severity", "equalto", "Medium")|list|length }}</p>
+            </div>
 
-    <table border="1" cellpadding="6" cellspacing="0">
-        <tr>
-            <th>Alert Name</th>
-            <th>Severity</th>
-            <th>Status</th>
-            <th>Provider</th>
-            <th>Time</th>
-        </tr>
+            <div class="card">
+                <h3>Low</h3>
+                <p>{{ alerts|selectattr("severity", "equalto", "Low")|list|length }}</p>
+            </div>
+        </section>
 
-        {% for alert in alerts %}
-        <tr>
-            <td>{{ alert.alert_name }}</td>
-            <td>{{ alert.severity }}</td>
-            <td>{{ alert.status }}</td>
-            <td>{{ alert.provider }}</td>
-            <td>{{ alert.time }}</td>
-        </tr>
-        {% endfor %}
+        <h2>Microsoft Sentinel Alerts</h2>
 
-    </table>
+        <table>
+            <tr>
+                <th>Alert Name</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Provider</th>
+                <th>Time</th>
+            </tr>
 
+            {% for alert in alerts %}
+            <tr>
+                <td>{{ alert.alert_name }}</td>
+                <td>
+                    <span class="severity {{ alert.severity|lower }}">
+                        {{ alert.severity }}
+                    </span>
+                </td>
+                <td>{{ alert.status }}</td>
+                <td>{{ alert.provider }}</td>
+                <td>{{ alert.time }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
 </body>
 </html>
