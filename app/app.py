@@ -40,10 +40,13 @@ def get_alert_data():
         table = response.tables[0]
 
         for row in table.rows:
+
+            formatted_time = row[1].strftime("%b %d, %Y %H:%M UTC")
+
             alert = {
                 "alert_name": row[3],
                 "severity": row[4],
-                "time": str(row[1]),
+                "time": formatted_time,
                 "provider": row[6],
                 "status": row[29],
                 "tactics": row[31],
@@ -55,7 +58,6 @@ def get_alert_data():
             alerts.append(alert)
 
     return alerts
-
 
 @app.route("/")
 def dashboard():
