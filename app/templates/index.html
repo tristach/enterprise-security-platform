@@ -7,7 +7,7 @@
 
      <link rel="stylesheet"
      href="{{ url_for('static', filename='style.css') }}">
-     
+
 </head>
 
 <body>
@@ -42,28 +42,36 @@
         <h2>Microsoft Sentinel Alerts</h2>
 
         <table>
-            <tr>
-                <th>Alert Name</th>
-                <th>Severity</th>
-                <th>Status</th>
-                <th>Provider</th>
-                <th>Time</th>
-            </tr>
+    <tr>
+        <th>Alert Name</th>
+        <th>Severity</th>
+        <th>Status</th>
+        <th>Provider</th>
+        <th>Time</th>
+        <th>Description</th>
+    </tr>
 
-            {% for alert in alerts %}
-            <tr>
-                <td>{{ alert.alert_name }}</td>
-                <td>
-                    <span class="severity {{ alert.severity|lower }}">
-                        {{ alert.severity }}
-                    </span>
-                </td>
-                <td>{{ alert.status }}</td>
-                <td>{{ alert.provider }}</td>
-                <td>{{ alert.time }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+    {% for alert in alerts %}
+    <tr>
+        <td>{{ alert.alert_name }}</td>
+
+        <td>
+            <span class="severity {{ alert.severity|lower }}">
+                {{ alert.severity }}
+            </span>
+        </td>
+
+        <td>{{ alert.status }}</td>
+
+        <td>{{ alert.provider }}</td>
+
+        <td>{{ alert.time }}</td>
+
+        <td>{{ alert.description }}</td>
+
+    </tr>
+    {% endfor %}
+</table>
     </main>
 </body>
 </html>
