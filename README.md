@@ -82,7 +82,7 @@ Web Dashboard
 This repository demonstrates the design and implementation of a cloud-native security platform using modern infrastructure, containerization, and cloud security technologies.
 
 
-# enterprise-security-platform
+# Rollout Name: enterprise-security-platform
 #In layman's terms:
 Deployment (nick-portfolio)
         ↓
