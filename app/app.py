@@ -23,8 +23,81 @@ client = LogsQueryClient(credential)
 
 query = """
 SecurityAlert
-| take 5
+| order by TimeGenerated desc
+| take 10
 """
+
+
+def format_mitre(value):
+    if not value:
+        return "N/A"
+
+    value = str(value)
+
+    replacements = {
+        "CredentialAccess": "Credential Access",
+        "InitialAccess": "Initial Access",
+        "DefenseEvasion": "Defense Evasion",
+        "CommandAndControl": "Command and Control",
+        "PrivilegeEscalation": "Privilege Escalation",
+        "Execution": "Execution",
+        "Persistence": "Persistence",
+        "Discovery": "Discovery",
+        "LateralMovement": "Lateral Movement",
+        "Collection": "Collection",
+        "Exfiltration": "Exfiltration",
+        "Impact": "Impact",
+    }
+
+    return replacements.get(value, value)
+
+
+def format_mitre(value):
+    if not value:
+        return "N/A"
+
+    value = str(value)
+
+    replacements = {
+        "CredentialAccess": "Credential Access",
+        "InitialAccess": "Initial Access",
+        "DefenseEvasion": "Defense Evasion",
+        "CommandAndControl": "Command and Control",
+        "PrivilegeEscalation": "Privilege Escalation",
+        "Execution": "Execution",
+        "Persistence": "Persistence",
+        "Discovery": "Discovery",
+        "LateralMovement": "Lateral Movement",
+        "Collection": "Collection",
+        "Exfiltration": "Exfiltration",
+        "Impact": "Impact",
+    }
+
+    return replacements.get(value, value)
+
+
+def format_mitre(value):
+    if not value:
+        return "N/A"
+
+    value = str(value)
+
+    replacements = {
+        "CredentialAccess": "Credential Access",
+        "InitialAccess": "Initial Access",
+        "DefenseEvasion": "Defense Evasion",
+        "CommandAndControl": "Command and Control",
+        "PrivilegeEscalation": "Privilege Escalation",
+        "Execution": "Execution",
+        "Persistence": "Persistence",
+        "Discovery": "Discovery",
+        "LateralMovement": "Lateral Movement",
+        "Collection": "Collection",
+        "Exfiltration": "Exfiltration",
+        "Impact": "Impact",
+    }
+
+    return replacements.get(value, value)
 
 
 def get_alert_data():
@@ -39,20 +112,26 @@ def get_alert_data():
     if response.tables:
         table = response.tables[0]
 
-        for row in table.rows:
+        print("\n===== SecurityAlert Columns =====")
 
+        for i, column in enumerate(table.columns):
+            print(f"{i}: {column.name}")
+
+        print("===============================\n")
+
+        for row in table.rows:
             formatted_time = row[1].strftime("%b %d, %Y %H:%M UTC")
 
             alert = {
-                "alert_name": row[3],
-                "severity": row[4],
+                "alert_name": row[3] or "N/A",
+                "severity": row[4] or "N/A",
                 "time": formatted_time,
-                "provider": row[6],
-                "status": row[29],
-                "tactics": row[31],
-                "techniques": row[32],
-                "entity": row[30],
-                "description": row[5],
+                "provider": row[6] or "N/A",
+                "status": row[29] or "N/A",
+                "tactics": format_mitre(row[31]),
+                "techniques": format_mitre(row[32]),
+                "entity": row[30] or "N/A",
+                "description": row[5] or "N/A",
             }
 
             alerts.append(alert)

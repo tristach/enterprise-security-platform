@@ -40,19 +40,22 @@
         </section>
 
         <h2>Microsoft Sentinel Alerts</h2>
-
-        <table>
+<table>
     <tr>
         <th>Alert Name</th>
         <th>Severity</th>
         <th>Status</th>
         <th>Provider</th>
         <th>Time</th>
+        <th>Tactic</th>
+        <th>Technique</th>
+        <th>Entity</th>
         <th>Description</th>
     </tr>
 
     {% for alert in alerts %}
     <tr>
+
         <td>{{ alert.alert_name }}</td>
 
         <td>
@@ -67,11 +70,18 @@
 
         <td>{{ alert.time }}</td>
 
+        <td>{{ alert.tactics }}</td>
+
+        <td>{{ alert.techniques }}</td>
+
+        <td>{{ alert.entity }}</td>
+
         <td>{{ alert.description }}</td>
 
     </tr>
     {% endfor %}
 </table>
+
     </main>
 </body>
 </html>
