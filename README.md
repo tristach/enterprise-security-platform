@@ -1,7 +1,6 @@
 # Enterprise Security Platform
 
 ## Overview
-
 The Enterprise Security Platform is a cloud-native security application designed to demonstrate modern cloud security engineering, container orchestration, and security monitoring practices.
 
 The platform is built around Microsoft Azure and is intended to aggregate, process, and present security information through a centralized web-based dashboard.
@@ -9,7 +8,6 @@ The platform is built around Microsoft Azure and is intended to aggregate, proce
 ---
 
 ## Objectives
-
 * Build a production-style cloud security platform
 * Demonstrate secure application architecture
 * Consume and present Azure security telemetry
@@ -20,7 +18,6 @@ The platform is built around Microsoft Azure and is intended to aggregate, proce
 ---
 
 ## Planned Architecture
-
 ```text
 Microsoft Azure
         │
@@ -46,7 +43,6 @@ Web Dashboard
 ---
 
 ## Current Capabilities
-
 * Dockerized Python application
 * Kubernetes Deployment, Service, and Ingress
 * JSON-based security data model
@@ -58,7 +54,6 @@ Web Dashboard
 ---
 
 ## Planned Enhancements
-
 * Live Azure security telemetry
 * Microsoft Sentinel integration
 * KQL-powered data retrieval
@@ -70,7 +65,6 @@ Web Dashboard
 ---
 
 ## Technologies
-
 * Python
 * Flask
 * Docker
@@ -85,12 +79,10 @@ Web Dashboard
 ---
 
 ## Purpose
-
 This repository demonstrates the design and implementation of a cloud-native security platform using modern infrastructure, containerization, and cloud security technologies.
 
 
 # enterprise-security-platform
-
 #In layman's terms:
 Deployment (nick-portfolio)
         ↓
@@ -127,7 +119,6 @@ kubectl rollout status deployment nick-portfolio
 kubectl rollout undo deployment nick-portfolio
 
 ## Current Kubernetes Architecture
-
 This project currently runs a Dockerized Flask portfolio application on Kubernetes.
 
 Traffic flow:
@@ -143,5 +134,14 @@ ClusterIP Service
 Pods
 ↓
 Flask Container
+
+## Added MITRE ATT&CK Mapping
+- Updated Microsoft Sentinel analytics rules to include MITRE ATT&CK metadata.
+- Added Tactics and Techniques to SecurityAlert records.
+- Verified enriched alerts using PowerShell execution and brute-force attack simulations.
+- Confirmed dashboard displays MITRE ATT&CK data correctly.
+
+<img width="939" height="454" alt="image" src="https://github.com/user-attachments/assets/271b0776-635c-43b1-bd6a-066703cfdc64" />
+
 
 The application originally used a NodePort Service for browser access. After adding an NGINX Ingress Controller, the Service was converted to ClusterIP so that the application is only exposed internally inside the cluster. External traffic now enters through the Ingress Controller.
