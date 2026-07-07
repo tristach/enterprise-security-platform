@@ -112,12 +112,7 @@ def get_alert_data():
     if response.tables:
         table = response.tables[0]
 
-        print("\n===== SecurityAlert Columns =====")
-
-        for i, column in enumerate(table.columns):
-            print(f"{i}: {column.name}")
-
-        print("===============================\n")
+        
 
         for row in table.rows:
             formatted_time = row[1].strftime("%b %d, %Y %H:%M UTC")
