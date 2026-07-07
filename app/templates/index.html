@@ -39,6 +39,27 @@
             </div>
         </section>
 
+        <div class="filters">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search dashboard...">
+
+    <select id="severityFilter">
+        <option value="">All Severities</option>
+    </select>
+
+    <select id="statusFilter">
+        <option value="">All Statuses</option>
+    </select>
+
+    <select id="providerFilter">
+        <option value="">All Providers</option>
+    </select>
+
+</div>
+
         <h2>Microsoft Sentinel Alerts</h2>
 <table>
     <tr>
@@ -83,5 +104,6 @@
 </table>
 
     </main>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
 </body>
 </html>
