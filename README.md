@@ -145,3 +145,13 @@ Flask Container
 
 
 The application originally used a NodePort Service for browser access. After adding an NGINX Ingress Controller, the Service was converted to ClusterIP so that the application is only exposed internally inside the cluster. External traffic now enters through the Ingress Controller.
+
+## MITRE ATT&CK Data Info.
+| Rule                                | MITRE Tactic                       | Technique             | Sub-technique                     |
+| ----------------------------------- | ---------------------------------- | --------------------- | --------------------------------- |
+| Windows Brute Force Login Attempt   | Credential Access                  | T1110 Brute Force     | —                                 |
+| BFA_Success                         | Credential Access                  | T1110 Brute Force     | —                                 |
+| Sysmon - PowerShell Spawn Detection | Execution                          | T1059                 | T1059.001                         |
+| Firewall Tampering                  | Defense Evasion                    | T1562 Impair Defenses | *(depends on the exact behavior)* |
+| Malware                             | *(depends on the detection logic)* | *(to determine)*      | *(if applicable)*                 |
+
