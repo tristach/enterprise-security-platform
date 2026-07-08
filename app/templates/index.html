@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise Security Platform</title>
 
-     <link rel="stylesheet"
-     href="{{ url_for('static', filename='style.css') }}">
-
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
+
     <header>
         <h1>Enterprise Security Platform</h1>
         <p>Cloud Security Dashboard</p>
     </header>
 
     <main>
+
         <section class="summary">
+
             <div class="card">
                 <h3>Total Alerts</h3>
                 <p>{{ alerts|length }}</p>
@@ -37,73 +39,87 @@
                 <h3>Low</h3>
                 <p>{{ alerts|selectattr("severity", "equalto", "Low")|list|length }}</p>
             </div>
+
         </section>
 
         <div class="filters">
 
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Search dashboard...">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search dashboard...">
 
-    <select id="severityFilter">
-        <option value="">All Severities</option>
-    </select>
+            <select id="severityFilter">
+                <option value="">All Severities</option>
+            </select>
 
-    <select id="statusFilter">
-        <option value="">All Statuses</option>
-    </select>
+            <select id="statusFilter">
+                <option value="">All Statuses</option>
+            </select>
 
-    <select id="providerFilter">
-        <option value="">All Providers</option>
-    </select>
+            <select id="providerFilter">
+                <option value="">All Providers</option>
+            </select>
 
-</div>
+        </div>
 
         <h2>Microsoft Sentinel Alerts</h2>
-<table>
-    <tr>
-        <th>Alert Name</th>
-        <th>Severity</th>
-        <th>Status</th>
-        <th>Provider</th>
-        <th>Time</th>
-        <th>Tactic</th>
-        <th>Technique</th>
-        <th>Entity</th>
-        <th>Description</th>
-    </tr>
 
-    {% for alert in alerts %}
-    <tr>
+        <table>
 
-        <td>{{ alert.alert_name }}</td>
+            <thead>
+                <tr>
+                    <th>Alert Name</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                    <th>Provider</th>
+                    <th>Time</th>
+                    <th>Tactic</th>
+                    <th>Technique</th>
+                    <th>Entity</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
 
-        <td>
-            <span class="severity {{ alert.severity|lower }}">
-                {{ alert.severity }}
-            </span>
-        </td>
+            <tbody>
 
-        <td>{{ alert.status }}</td>
+                {% for alert in alerts %}
 
-        <td>{{ alert.provider }}</td>
+                <tr>
 
-        <td>{{ alert.time }}</td>
+                    <td>{{ alert.alert_name }}</td>
 
-        <td>{{ alert.tactics }}</td>
+                    <td>
+                        <span class="severity {{ alert.severity|lower }}">
+                            {{ alert.severity }}
+                        </span>
+                    </td>
 
-        <td>{{ alert.techniques }}</td>
+                    <td>{{ alert.status }}</td>
 
-        <td>{{ alert.entity }}</td>
+                    <td>{{ alert.provider }}</td>
 
-        <td>{{ alert.description }}</td>
+                    <td>{{ alert.time }}</td>
 
-    </tr>
-    {% endfor %}
-</table>
+                    <td>{{ alert.tactics }}</td>
+
+                    <td>{{ alert.techniques }}</td>
+
+                    <td>{{ alert.entity }}</td>
+
+                    <td>{{ alert.description }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
 
     </main>
+
     <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
 </body>
 </html>
