@@ -18,11 +18,10 @@ spec:
 
     spec:
       containers:
-      - name: nick-portfolio
-        image: nick-vs-docker-app:v3
-        ports:
-        - containerPort: 5000
-
-
-
-        
+        - name: nick-portfolio
+          image: esp:v1
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: esp-azure-secrets
