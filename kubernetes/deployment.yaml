@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: nick-portfolio
+  name: esp-deployment
 
 spec:
   replicas: 3
 
   selector:
     matchLabels:
-      app: nick-portfolio
+      app: esp
 
   template:
     metadata:
       labels:
-        app: nick-portfolio
+        app: esp
 
     spec:
       containers:
-        - name: nick-portfolio
+        - name: esp
           image: esp:v1
           ports:
             - containerPort: 5000
