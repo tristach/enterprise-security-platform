@@ -1,4 +1,4 @@
-# Nick Docker App
+# Enterprise Security Platform Docker App
 
 Simple Python application containerized with Docker.
 

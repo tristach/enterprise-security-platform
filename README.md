@@ -1,157 +1,186 @@
-# Enterprise Security Platform
+# Enterprise Security Platform (ESP)
 
 ## Overview
-The Enterprise Security Platform is a cloud-native security application designed to demonstrate modern cloud security engineering, container orchestration, and security monitoring practices.
 
-The platform is built around Microsoft Azure and is intended to aggregate, process, and present security information through a centralized web-based dashboard.
+The Enterprise Security Platform (ESP) is a cloud-native security dashboard demonstrating modern DevSecOps, cloud security engineering, containerization, and Kubernetes deployment practices.
 
----
-
-## Objectives
-* Build a production-style cloud security platform
-* Demonstrate secure application architecture
-* Consume and present Azure security telemetry
-* Deploy containerized services using Kubernetes
-* Implement Infrastructure as Code with Terraform
-* Showcase cloud security engineering workflows
+The application queries Microsoft Azure Log Analytics (including Microsoft Sentinel data), processes the results with a Python Flask backend, and presents them through a Kubernetes-hosted web dashboard.
 
 ---
 
-## Planned Architecture
-```text
-Microsoft Azure
-        │
-        ▼
-Microsoft Sentinel / Log Analytics
-        │
-        ▼
-Security Data API
-        │
-        ▼
-Flask Dashboard & REST API
-        │
-        ▼
-Docker
-        │
-        ▼
-Kubernetes
-        │
-        ▼
-Web Dashboard
-```
+## Features
 
----
-
-## Current Capabilities
-* Dockerized Python application
-* Kubernetes Deployment, Service, and Ingress
-* JSON-based security data model
-* REST API endpoints
-* Rolling deployments
-* Self-healing Kubernetes workloads
-* Git-based development workflow
-
----
-
-## Planned Enhancements
-* Live Azure security telemetry
-* Microsoft Sentinel integration
-* KQL-powered data retrieval
-* Authentication and authorization
-* Infrastructure as Code using Terraform
-* CI/CD pipeline
-* Security reporting and analytics
+- Cloud-native Python Flask application
+- Microsoft Sentinel integration
+- Azure Log Analytics queries (KQL)
+- Docker containerization
+- Kubernetes Deployment, Service, and Ingress
+- NGINX Ingress host-based routing
+- Self-healing Kubernetes workloads
+- Rolling deployments
+- MITRE ATT&CK mapping
+- Git/GitHub version control
 
 ---
 
 ## Technologies
-* Python
-* Flask
-* Docker
-* Kubernetes
-* Microsoft Azure
-* Microsoft Sentinel
-* Log Analytics
-* KQL
-* Terraform
-* Git & GitHub
+
+- Python
+- Flask
+- JavaScript
+- HTML/CSS
+- Docker
+- Kubernetes
+- NGINX Ingress
+- Microsoft Azure
+- Microsoft Sentinel
+- Azure Log Analytics
+- Kusto Query Language (KQL)
+- Terraform
+- Git & GitHub
+
+---
+
+# System Architecture
+
+```text
+Browser
+      │
+      ▼
+NGINX Ingress Controller
+      │
+      ▼
+Ingress (esp-ingress)
+      │
+      ▼
+ClusterIP Service (esp-service)
+      │
+      ▼
+ESP Pods (3 replicas)
+      │
+      ▼
+Flask Application
+      │
+      ▼
+Python Backend
+      │
+      ▼
+Microsoft Sentinel
+      │
+      ▼
+Azure Log Analytics Workspace
+```
+
+---
+
+# Kubernetes Deployment Architecture
+
+```text
+Deployment (esp-deployment)
+        │
+        ▼
+Requests 3 replicas
+        │
+        ▼
+Kubernetes creates 3 Pods
+        │
+        ▼
+Each Pod label:
+app=esp
+        │
+        ▼
+Each Pod runs one container
+        │
+        ▼
+Container:
+esp
+        │
+        ▼
+Docker image:
+esp:v1
+```
+
+---
+
+## Dashboard
+
+The dashboard displays Microsoft Sentinel alerts, severity, providers, MITRE ATT&CK mappings, entities, and descriptions retrieved from Azure Log Analytics.
+
+<img width="939" height="454" alt="ESP Dashboard" src="https://github.com/user-attachments/assets/271b0776-635c-43b1-bd6a-066703cfdc64" />
+
+---
+
+## MITRE ATT&CK Integration
+
+The dashboard enriches Microsoft Sentinel alerts with MITRE ATT&CK metadata, allowing analysts to quickly identify associated tactics and techniques.
+
+Implemented:
+
+- MITRE ATT&CK tactics
+- MITRE ATT&CK techniques
+- SecurityAlert enrichment
+- Dashboard visualization
+
+| Rule | MITRE Tactic | Technique | Sub-technique |
+|------|--------------|-----------|---------------|
+| Windows Brute Force Login Attempt | Credential Access | T1110 Brute Force | — |
+| BFA_Success | Credential Access | T1110 Brute Force | — |
+| Sysmon - PowerShell Spawn Detection | Execution | T1059 | T1059.001 |
+| Firewall Tampering | Defense Evasion | T1562 Impair Defenses | Depends on rule logic |
+| Malware | Depends on detection logic | Depends on detection logic | Depends on rule logic |
+
+---
+
+## Kubernetes Notes
+
+The application originally exposed the dashboard using a NodePort Service.
+
+It was later refactored to use an NGINX Ingress Controller with a ClusterIP Service, providing a more production-oriented architecture similar to many real-world Kubernetes deployments.
+
+Benefits:
+
+- Internal-only Services
+- Host-based routing
+- Cleaner networking architecture
+- Better scalability
+- Easier migration to managed Kubernetes platforms
+
+---
+
+## Common Kubernetes Commands
+
+```bash
+kubectl get all
+
+kubectl get deployments
+kubectl get pods
+kubectl get services
+kubectl get ingress
+
+kubectl describe deployment esp-deployment
+kubectl describe service esp-service
+kubectl describe ingress esp-ingress
+
+kubectl rollout history deployment esp-deployment
+kubectl rollout status deployment esp-deployment
+kubectl rollout undo deployment esp-deployment
+```
+
+---
+
+## Future Enhancements
+
+- Live Azure authentication
+- Role-Based Access Control (RBAC)
+- Horizontal Pod Autoscaling (HPA)
+- Terraform deployment automation
+- CI/CD with GitHub Actions
+- Threat intelligence integration
+- Vulnerability management dashboard
+- Incident response workflows
 
 ---
 
 ## Purpose
-This repository demonstrates the design and implementation of a cloud-native security platform using modern infrastructure, containerization, and cloud security technologies.
 
-
-# Rollout Name: enterprise-security-platform
-#In layman's terms:
-Deployment (nick-portfolio)
-        ↓
-Wants 3 replicas
-        ↓
-Creates 3 Pods
-        ↓
-Each Pod gets label:
-app=nick-portfolio
-        ↓
-Each Pod contains 1 container
-        ↓
-Container name:
-nick-portfolio
-        ↓
-Created from image:
-nick-vs-docker-app:v3
-
-June 22, 2026
-
-Learned:
-- Kubernetes Service
-- ClusterIP vs NodePort
-- Service selectors
-- Pod recreation
-- Rolling updates
-- Rollback commands
-
-Commands used:
-kubectl get all
-kubectl describe service nick-portfolio-service
-kubectl rollout history deployment nick-portfolio
-kubectl rollout status deployment nick-portfolio
-kubectl rollout undo deployment nick-portfolio
-
-## Current Kubernetes Architecture
-This project currently runs a Dockerized Flask portfolio application on Kubernetes.
-
-Traffic flow:
-
-Browser
-↓
-NGINX Ingress Controller
-↓
-Ingress Resource
-↓
-ClusterIP Service
-↓
-Pods
-↓
-Flask Container
-
-## Added MITRE ATT&CK Mapping
-- Updated Microsoft Sentinel analytics rules to include MITRE ATT&CK metadata.
-- Added Tactics and Techniques to SecurityAlert records.
-- Verified enriched alerts using PowerShell execution and brute-force attack simulations.
-- Confirmed dashboard displays MITRE ATT&CK data correctly.
-
-<img width="939" height="454" alt="image" src="https://github.com/user-attachments/assets/271b0776-635c-43b1-bd6a-066703cfdc64" />
-
-
-The application originally used a NodePort Service for browser access. After adding an NGINX Ingress Controller, the Service was converted to ClusterIP so that the application is only exposed internally inside the cluster. External traffic now enters through the Ingress Controller.
-
-## MITRE ATT&CK Data Info.
-| Rule                                | MITRE Tactic                       | Technique             | Sub-technique                     |
-| ----------------------------------- | ---------------------------------- | --------------------- | --------------------------------- |
-| Windows Brute Force Login Attempt   | Credential Access                  | T1110 Brute Force     | —                                 |
-| BFA_Success                         | Credential Access                  | T1110 Brute Force     | —                                 |
-| Sysmon - PowerShell Spawn Detection | Execution                          | T1059                 | T1059.001                         |
-| Firewall Tampering                  | Defense Evasion                    | T1562 Impair Defenses | *(depends on the exact behavior)* |
-| Malware                             | *(depends on the detection logic)* | *(to determine)*      | *(if applicable)*                 |
-
+This repository demonstrates practical experience designing, deploying, troubleshooting, and operating a cloud-native security application using Docker, Kubernetes, Microsoft Azure, Microsoft Sentinel, and modern DevSecOps practices.

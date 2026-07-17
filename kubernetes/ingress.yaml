@@ -1,11 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nick-portfolio-ingress
+  name: esp-ingress
 spec:
   ingressClassName: nginx
   rules:
-  - host: portfolio.nick.local
+  - host: esp.nick.local
     http:
       paths:
       - path: /
