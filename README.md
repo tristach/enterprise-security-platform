@@ -42,36 +42,10 @@ The application queries Microsoft Azure Log Analytics (including Microsoft Senti
 ---
 
 # System Architecture
+<img width="379" height="456" alt="image" src="https://github.com/user-attachments/assets/71991c34-e189-4285-89c6-9730747bf751" />
 
-```text
-Browser
-      │
-      ▼
-NGINX Ingress Controller
-      │
-      ▼
-Ingress (esp-ingress)
-      │
-      ▼
-ClusterIP Service (esp-service)
-      │
-      ▼
-ESP Pods (3 replicas)
-      │
-      ▼
-Flask Application
-      │
-      ▼
-Python Backend
-      │
-      ▼
-Microsoft Sentinel
-      │
-      ▼
-Azure Log Analytics Workspace
-```
 
----
+
 
 # Kubernetes Deployment Architecture
 
