@@ -1,12 +1,31 @@
 # Enterprise Security Platform (ESP)
 
 ## Overview
-
-The Enterprise Security Platform (ESP) is a cloud-native security dashboard demonstrating modern DevSecOps, cloud security engineering, containerization, and Kubernetes deployment practices.
-
-The application queries Microsoft Azure Log Analytics (including Microsoft Sentinel data), processes the results with a Python Flask backend, and presents them through a Kubernetes-hosted web dashboard.
+Enterprise Security Platform (ESP) is a cloud-native security dashboard that demonstrates how Kubernetes, Docker, Azure Log Analytics, Microsoft Sentinel, and KQL can be integrated into a modern security operations workflow.
 
 ---
+## Dashboard
+
+The dashboard displays Microsoft Sentinel alerts, severity, providers, MITRE ATT&CK mappings, entities, and descriptions retrieved from Azure Log Analytics.
+Initial development stage.
+<img width="939" height="454" alt="ESP Dashboard" src="https://github.com/user-attachments/assets/271b0776-635c-43b1-bd6a-066703cfdc64" />
+Final deployment.
+<img width="951" height="383" alt="image" src="https://github.com/user-attachments/assets/382c21e8-2f4e-44fe-a326-df0f0bcd3994" />
+
+---
+
+##Highlights
+
+• Built with Kubernetes (Deployments, Services, Ingress)
+• Containerized using Docker
+• Queries Azure Log Analytics with KQL
+• Visualizes Microsoft Sentinel incidents
+• Maps detections to MITRE ATT&CK
+• Horizontally scalable architecture
+
+
+# System Architecture
+<img width="379" height="456" alt="image" src="https://github.com/user-attachments/assets/71991c34-e189-4285-89c6-9730747bf751" />
 
 ## Features
 
@@ -23,7 +42,7 @@ The application queries Microsoft Azure Log Analytics (including Microsoft Senti
 
 ---
 
-## Technologies
+## Skills Demonstrated
 
 - Python
 - Flask
@@ -40,9 +59,6 @@ The application queries Microsoft Azure Log Analytics (including Microsoft Senti
 - Git & GitHub
 
 ---
-
-# System Architecture
-<img width="379" height="456" alt="image" src="https://github.com/user-attachments/assets/71991c34-e189-4285-89c6-9730747bf751" />
 
 
 
@@ -76,13 +92,7 @@ esp:v1
 
 ---
 
-## Dashboard
 
-The dashboard displays Microsoft Sentinel alerts, severity, providers, MITRE ATT&CK mappings, entities, and descriptions retrieved from Azure Log Analytics.
-
-<img width="939" height="454" alt="ESP Dashboard" src="https://github.com/user-attachments/assets/271b0776-635c-43b1-bd6a-066703cfdc64" />
-
----
 
 ## MITRE ATT&CK Integration
 
