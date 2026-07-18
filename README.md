@@ -7,18 +7,15 @@ Enterprise Security Platform (ESP) is a cloud-native security dashboard that dem
 
 ## Dashboard
 
-The dashboard displays Microsoft Sentinel alerts, severity, providers, MITRE ATT&CK mappings, entities, and descriptions retrieved from Azure Log Analytics.
-
-<img width="951" height="383" alt="image" src="https://github.com/user-attachments/assets/382c21e8-2f4e-44fe-a326-df0f0bcd3994" />
-
----
-
+• The dashboard displays Microsoft Sentinel alerts, severity, providers, MITRE ATT&CK mappings, entities, and descriptions retrieved from Azure Log Analytics.
 • Built with Kubernetes (Deployments, Services, Ingress)
 • Containerized using Docker
 • Queries Azure Log Analytics with KQL
 • Visualizes Microsoft Sentinel incidents
 • Maps detections to MITRE ATT&CK
 • Horizontally scalable architecture
+
+<img width="951" height="383" alt="image" src="https://github.com/user-attachments/assets/382c21e8-2f4e-44fe-a326-df0f0bcd3994" />
 
 
 # System Architecture
