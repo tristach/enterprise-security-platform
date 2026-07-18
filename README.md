@@ -13,8 +13,6 @@ The dashboard displays Microsoft Sentinel alerts, severity, providers, MITRE ATT
 
 ---
 
-##Highlights
-
 • Built with Kubernetes (Deployments, Services, Ingress)
 • Containerized using Docker
 • Queries Azure Log Analytics with KQL
