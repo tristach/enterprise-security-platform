@@ -149,14 +149,13 @@ kubectl rollout undo deployment esp-deployment
 
 ## Future Enhancements
 
-- Live Azure authentication
-- Role-Based Access Control (RBAC)
 - Horizontal Pod Autoscaling (HPA)
-- Terraform deployment automation
-- CI/CD with GitHub Actions
-- Threat intelligence integration
+- CI/CD pipeline with GitHub Actions
+- Infrastructure as Code using Terraform
+- Application-level Role-Based Access Control (RBAC)
+- Threat intelligence integration (e.g., VirusTotal or Microsoft Defender TI)
 - Vulnerability management dashboard
-- Incident response workflows
+- Automated incident response using Azure Logic Apps
 
 ---
 
